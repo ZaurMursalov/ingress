@@ -1,0 +1,6 @@
+logstash:
+  enabled: ${LOGSTASH_ENABLED:true}
+  appname: files-ms
+  host: ${LOGSTASH_HOST:localhost}
+  port: 5000
+  queue-size: 512

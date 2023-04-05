@@ -1,0 +1,44 @@
+plugins {
+    id 'org.springframework.boot' version "$springBootVersion" apply false
+    id 'io.spring.dependency-management' version "$springDependencyManagerVersion" apply false
+    id 'com.bmuschko.docker-remote-api' version "$dockerVersion" apply false
+}
+
+
+def javaProjects = [
+        project(':payment'),
+        project(':common'),
+]
+
+
+allprojects {
+
+    def hash = 'git rev-parse --short HEAD'.execute().text.trim() //tag
+    version = "$projectVersion.$hash"
+
+    repositories {
+        mavenCentral()
+    }
+
+    apply plugin: 'java'
+    apply plugin: 'com.bmuschko.docker-remote-api'
+}
+
+subprojects {
+    apply plugin: 'pmd'
+    apply plugin: 'checkstyle'
+
+    dependencies {
+        implementation "io.jsonwebtoken:jjwt-api:${jjwtVersion}"
+        implementation "io.jsonwebtoken:jjwt-impl:${jjwtVersion}"
+        implementation "io.jsonwebtoken:jjwt-jackson:${jjwtVersion}"
+
+        compileOnly "io.springfox:springfox-boot-starter:${springfoxStarterVersion}"
+        compileOnly "io.springfox:springfox-data-rest:${springfoxStarterVersion}"
+        compileOnly "io.springfox:springfox-bean-validators:${springfoxStarterVersion}"
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+}

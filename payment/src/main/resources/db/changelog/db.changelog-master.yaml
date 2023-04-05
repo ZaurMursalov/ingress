@@ -1,0 +1,3 @@
+databaseChangeLog:
+  - includeAll:
+      path: db/changelog/ing-01-user-entities/

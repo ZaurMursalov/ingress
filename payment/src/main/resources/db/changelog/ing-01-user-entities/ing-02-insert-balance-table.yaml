@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - changeSet:
+      id: 20201025-11
+      author: atilla
+      changes:
+        - insert:
+            tableName: balance
+            columns:
+              - column:
+                  name: payment_balance
+                  value: 0.00
+              - column:
+                  name: expense_balance
+                  value: 0.00

@@ -1,0 +1,11 @@
+application:
+  file:
+    upload-dir: ./upload
+    basePath: ${MS_FILE_UPLOADS_BASE_PATH:./uploads}
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 5000MB
+      max-request-size: 5000MB
+

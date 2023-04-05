@@ -1,0 +1,26 @@
+databaseChangeLog:
+  - changeSet:
+      id: 20201025-10
+      author: atilla
+      changes:
+        - createTable:
+            tableName: balance
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: balance_pk
+                    nullable: false
+              - column:
+                  name: payment_balance
+                  type: DOUBLE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: expense_balance
+                  type: DOUBLE
+                  constraints:
+                    nullable: false
